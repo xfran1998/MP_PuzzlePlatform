@@ -5,7 +5,7 @@ First multiplayer game made in Unreal
 url of UnrealEditor.exe  + url uproject + flags
 
 ```
-"C:\Program Files\Epic Games\UE_5.0\Engine\Binaries\Win64\UnrealEditor.exe" "C:\Users\frans\Documents\Unreal Projects\MP_PuzzlePlatform\MP_PuzzlePlatform.uproject" -game
+"C:\Program Files\Epic Games\UE_5.0\Engine\Binaries\Win64\UnrealEditor.exe" "C:\Users\frans\Documents\Unreal Projects\MP_PuzzlePlatform\MP_PuzzlePlatform.uproject" -game -log
 ```
 
 <br>
