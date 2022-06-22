@@ -6,6 +6,11 @@ url of UnrealEditor.exe  + url uproject + flags
 
 #### Cliente
 ```
+"C:\Program Files\Epic Games\UE_5.0\Engine\Binaries\Win64\UnrealEditor.exe" "C:\Users\frans\Documents\Unreal Projects\MP_PuzzlePlatform\MP_PuzzlePlatform.uproject" 192.168.1.50 -game -log
+```
+
+#### Servidor
+```
 "C:\Program Files\Epic Games\UE_5.0\Engine\Binaries\Win64\UnrealEditor.exe" "C:\Users\frans\Documents\Unreal Projects\MP_PuzzlePlatform\MP_PuzzlePlatform.uproject" 192.168.1.50 -server -log
 ```
 
