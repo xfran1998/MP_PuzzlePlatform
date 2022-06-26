@@ -20,3 +20,28 @@ url of UnrealEditor.exe  + url uproject + flags
 * -game: start the game
 * -log: print the logs of the server to the cmd
 
+## Unreal Networking
+
+### Check is the server
+```C++
+// Check is the server
+if (HasAuthority()){
+  // Server only stuff
+}
+
+// Check is the client
+
+if (!HasAuthority()){
+  // Client only stuff
+}
+```
+
+### Replication ( _In the BeginPlay() method_ )
+```C++
+// Replicate Actor
+if (HasAuthority()){
+  SetReplicates(true); // Set Actor to replicate
+  SetReplicateMovement(true); // Set the Actor movement to replicate
+}
+
+```
