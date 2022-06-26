@@ -30,7 +30,6 @@ if (HasAuthority()){
 }
 
 // Check is the client
-
 if (!HasAuthority()){
   // Client only stuff
 }
