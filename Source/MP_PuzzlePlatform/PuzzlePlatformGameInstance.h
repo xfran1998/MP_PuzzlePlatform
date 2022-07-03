@@ -5,18 +5,20 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "PuzzlePlatformGameInstance.generated.h"
+ 
 
-/**
- * 
- */
 UCLASS()
 class MP_PUZZLEPLATFORM_API UPuzzlePlatformGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
-	
+
+public:
 	UPuzzlePlatformGameInstance(const FObjectInitializer& ObjectInitializer);
 
 	virtual void Init() override;
+
+	UFUNCTION(BlueprintCallable)
+	void LoadMenu();
 
 	UFUNCTION(Exec)
 	void Host();
@@ -24,4 +26,9 @@ class MP_PUZZLEPLATFORM_API UPuzzlePlatformGameInstance : public UGameInstance
 	UFUNCTION(Exec)
 	void Join(const FString& ServerName);
 
+	UFUNCTION(Exec)
+	void Name();
+
+private:
+	class TSubclassOf<UUserWidget> MenuClass;
 };
