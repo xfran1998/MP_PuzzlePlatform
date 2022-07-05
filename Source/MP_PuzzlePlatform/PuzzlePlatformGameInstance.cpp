@@ -8,13 +8,15 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Blueprint/UserWidget.h"
 
+#include "MenuSystem/MenuInterface.h"
+#include "MenuSystem/MainMenu.h"
 #include "MovingPlatform.h"
 
 #define PRINT(msg) if(GEngine){GEngine->AddOnScreenDebugMessage(2, 5.0f, FColor::Yellow, msg);}
 
 UPuzzlePlatformGameInstance::UPuzzlePlatformGameInstance(const FObjectInitializer& ObjectInitializer)
 {
-    ConstructorHelpers::FClassFinder<UUserWidget> MenuBPClass(TEXT("/Game/MenuSystem/WBP_MainMenu"));
+    ConstructorHelpers::FClassFinder<UMainMenu> MenuBPClass(TEXT("/Game/MenuSystem/WBP_MainMenu"));
     if (!ensure(MenuBPClass.Class != nullptr)) return;
 
     MenuClass = MenuBPClass.Class;
@@ -23,17 +25,23 @@ UPuzzlePlatformGameInstance::UPuzzlePlatformGameInstance(const FObjectInitialize
 void UPuzzlePlatformGameInstance::Init()
 {
     Super::Init();
-    UE_LOG(LogTemp, Warning, TEXT("Init()"));
 }
 
 void UPuzzlePlatformGameInstance::LoadMenu()
 {
     if (!ensure(MenuClass != nullptr)) return;
-    
-    UUserWidget* MainMenu = CreateWidget<UUserWidget>(this, MenuClass);
+
+    MainMenu = CreateWidget<UMainMenu>(this, MenuClass);
     if (!ensure(MainMenu != nullptr)) return;
 
+
     MainMenu->AddToViewport();
+    MainMenu->bIsFocusable = true;
+    
+
+    MainMenu->SetMenuInterface(this);
+    MainMenu->SetMenuController(GetFirstLocalPlayerController());
+    MainMenu->SetUpCursorToMenu();
 }
 
 void UPuzzlePlatformGameInstance::Host()
@@ -43,6 +51,7 @@ void UPuzzlePlatformGameInstance::Host()
 
     World->ServerTravel("/Game/Maps/Level1?listen");
 
+    MainMenu->SetUpCursorToGame();
     PRINT(FString::Printf(TEXT("Hosting: %s"), *World->GetName()));
 }
 
