@@ -13,9 +13,6 @@ class UMenuInterface : public UInterface
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
 class MP_PUZZLEPLATFORM_API IMenuInterface
 {
 	GENERATED_BODY()
@@ -24,4 +21,5 @@ class MP_PUZZLEPLATFORM_API IMenuInterface
 public:
 	virtual void Host() = 0;
 	virtual void Join(const FString& ServerName) = 0;
+	virtual void OpenMainMenu() = 0;
 };

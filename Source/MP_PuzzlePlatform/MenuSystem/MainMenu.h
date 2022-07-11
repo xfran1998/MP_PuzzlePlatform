@@ -16,9 +16,9 @@ class MP_PUZZLEPLATFORM_API UMainMenu : public UUserWidget
 	GENERATED_BODY()
 public:
 	void SetMenuInterface(IMenuInterface* NotShadowingVariableNamedMenuInterface);
-	void SetMenuController(APlayerController* PlayerController);
-	void SetUpCursorToMenu();
+	void SetUpMenu();
 	void SetUpCursorToGame();	
+	virtual void OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld) override;
 
 protected:
 	virtual bool Initialize() override;
@@ -29,13 +29,36 @@ protected:
 	UFUNCTION()
 	void Join();
 
+	UFUNCTION()
+	void OpenJoinMenu();
+
+	UFUNCTION()
+	void OpenMainMenu();
+
 private:
 	UPROPERTY(meta = (BindWidget))
 	class UButton* HostButton;
 	
 	UPROPERTY(meta = (BindWidget))
 	class UButton* JoinButton;
+	
+	UPROPERTY(meta = (BindWidget))
+	class UButton* BackButton;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* PlayButton;
+
+	UPROPERTY(meta = (BindWidget))
+	class UWidgetSwitcher* MenuSwitcher;
+
+	UPROPERTY(meta = (BindWidget))
+	class UWidget* MainButtons;
+
+	UPROPERTY(meta = (BindWidget))
+	class UWidget* IPButtons;
+
+	UPROPERTY(meta = (BindWidget))
+	class UEditableTextBox* IPInput;
 
 	IMenuInterface* MenuInterface;
-	APlayerController* PlayerController;
 };
