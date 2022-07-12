@@ -35,6 +35,9 @@ protected:
 	UFUNCTION()
 	void OpenMainMenu();
 
+	UFUNCTION()
+	void QuitGame();
+
 private:
 	UPROPERTY(meta = (BindWidget))
 	class UButton* HostButton;
@@ -47,6 +50,9 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* PlayButton;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* ExitButton;
 
 	UPROPERTY(meta = (BindWidget))
 	class UWidgetSwitcher* MenuSwitcher;

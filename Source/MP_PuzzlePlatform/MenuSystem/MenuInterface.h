@@ -22,4 +22,5 @@ public:
 	virtual void Host() = 0;
 	virtual void Join(const FString& ServerName) = 0;
 	virtual void OpenMainMenu() = 0;
+	virtual void QuitGame() = 0;
 };

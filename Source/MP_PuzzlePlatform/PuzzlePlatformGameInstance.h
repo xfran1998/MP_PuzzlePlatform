@@ -36,6 +36,9 @@ public:
 	UFUNCTION()
 	virtual void OpenMainMenu() override;
 
+	UFUNCTION()
+	virtual void QuitGame() override;
+
 	UFUNCTION(Exec)
 	void Name();
 

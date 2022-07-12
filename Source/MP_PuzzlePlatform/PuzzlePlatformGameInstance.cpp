@@ -108,3 +108,11 @@ void UPuzzlePlatformGameInstance::OpenGameMenu()
 {
     this->LoadGameMenu();
 }
+
+void UPuzzlePlatformGameInstance::QuitGame()
+{
+    APlayerController* PlayerController = GetFirstLocalPlayerController();
+    if (!ensure(PlayerController != nullptr)) return;
+    
+    PlayerController->ConsoleCommand("quit");
+}

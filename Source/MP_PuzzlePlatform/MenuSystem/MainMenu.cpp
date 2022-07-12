@@ -12,14 +12,17 @@ bool UMainMenu::Initialize()
 {
     if ( !Super::Initialize() ) return false;
 
+    // Check all buttons are valid
     if (!ensure(HostButton != nullptr)) return false;
     if (!ensure(JoinButton != nullptr)) return false;
     if (!ensure(BackButton != nullptr)) return false;
     if (!ensure(PlayButton != nullptr)) return false;
+    if (!ensure(ExitButton != nullptr)) return false;
     
     // Play the game buttons
     HostButton->OnClicked.AddDynamic(this, &UMainMenu::Host);
     PlayButton->OnClicked.AddDynamic(this, &UMainMenu::Join);
+    ExitButton->OnClicked.AddDynamic(this, &UMainMenu::QuitGame);
 
     // Switch widgets buttons
     JoinButton->OnClicked.AddDynamic(this, &UMainMenu::OpenJoinMenu);
@@ -116,4 +119,12 @@ void UMainMenu::OnLevelRemovedFromWorld(ULevel* InLevel, UWorld* InWorld)
     Super::OnLevelRemovedFromWorld(InLevel, InWorld);
 
     SetUpCursorToGame();
+}
+
+void UMainMenu::QuitGame()
+{
+    if (!ensure(MenuInterface != nullptr)) return;
+    // Letting GameInstance implementation take care of quitting the game
+    // becouse maybe need make some stuff before quitting, like saving the game
+    MenuInterface->QuitGame();
 }
